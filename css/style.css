@@ -2044,4 +2044,120 @@ h1 {
     text-align: center;
     margin-top: 30px;
 }
+/* Основное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Полупрозрачный тёмный фон */
+    backdrop-filter: blur(10px); /* Эффект размытия */
+    animation: fadeIn 0.5s ease; /* Анимация появления */
+}
+
+/* Контент окна */
+.modal-content {
+    background: linear-gradient(135deg, #f9f9f9, #ffffff); /* Лёгкий градиент */
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 20px;
+    width: 70%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.5s ease; /* Плавная анимация появления */
+    text-align: left;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+/* Заголовок */
+.modal-content h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1E88E5; /* Акцентный синий */
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Вводный текст */
+.modal-content p.intro {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+/* Блок с выделением */
+.modal-content .highlight {
+    background: #f3f4f6; /* Светлый фон */
+    border-left: 5px solid #4CAF50; /* Зелёный акцент */
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.modal-content .highlight p {
+    font-size: 17px;
+    color: #555;
+    text-align: justify;
+}
+
+/* Основной текст */
+.modal-content p.details {
+    font-size: 16px;
+    color: #444;
+    margin: 20px 0;
+    text-align: justify;
+}
+
+/* Призыв к действию */
+.modal-content p.call-to-action {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1E88E5;
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* Кнопка закрытия */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #555;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #FF0000; /* Красный при наведении */
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
 
