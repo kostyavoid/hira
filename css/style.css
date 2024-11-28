@@ -1689,241 +1689,123 @@ html, body {
 /* Верхний блок */
 .top-bar {
   position: absolute;
-  top: 0; /* Плотно прилегает к верхнему краю */
+  top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%; /* Занимает всю ширину экрана */
-  max-width: 400px; /* Максимальная ширина для десктопа */
-  background: rgba(20, 20, 30, 0.8); /* Полупрозрачный тёмный фон */
-  padding: 8px 12px; /* Умеренные отступы */
-  border-radius: 0 0 10px 10px; /* Скругляем только нижние углы */
+  width: 100%;
+  max-width: 400px;
+  background: rgba(20, 20, 30, 0.8);
+  padding: 8px 12px;
+  border-radius: 0 0 10px 10px;
   display: flex;
-  justify-content: space-between; /* Распределение контента по краям */
-  align-items: center; /* Центрирование контента по вертикали */
-  backdrop-filter: blur(6px); /* Размытие для "стеклянного" эффекта */
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Тень для выделения */
-  z-index: 10; /* Поверх остальных элементов */
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
-/* Заголовок внутри верхнего блока */
+/* Центрированный заголовок */
 .top-bar h1 {
-  font-size: 1rem; /* Компактный текст */
-  color: #ffcf70; /* Золотистый цвет */
+  font-size: 1rem;
+  color: #ffcf70;
   margin: 0;
   text-align: center;
-  flex-grow: 1; /* Растягиваем заголовок */
-  letter-spacing: 1px; /* Лёгкое разрежение текста */
-  text-transform: uppercase; /* Верхний регистр для солидности */
+  flex-grow: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* Кнопки в верхнем блоке */
-.top-bar button {
-  background: none;
-  border: none;
-  color: #ffcf70;
-  font-size: 0.8rem; /* Компактный размер текста */
+/* Текст о ростках */
+#sprouts-info {
+  color: #ffffff;
+  font-size: 0.9rem;
   font-weight: bold;
+}
+
+/* Кнопка "О нас" */
+.about-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffcf70;
+  border-radius: 5px;
+  color: #ffcf70;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 5px 10px;
   cursor: pointer;
-  padding: 5px 10px; /* Минимальные отступы */
-  border-radius: 5px; /* Лёгкое скругление кнопок */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Плавное изменение стиля */
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-.top-bar button:hover {
-  background: rgba(255, 207, 112, 0.2); /* Лёгкий фон при наведении */
-  color: #ffffff; /* Подсветка текста */
-}
- header {
-    background: #4CAF50; /* Цвет фона */
-    color: white; /* Цвет текста */
-    padding: 10px 0;
-    font-size: 18px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+.about-button:hover {
+  background: rgba(255, 207, 112, 0.2);
+  color: #ffffff;
 }
 
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Разделение на три части */
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-h1 {
-    font-size: 24px;
-    margin: 0;
-}
-
-#memory-seeds, #about-us {
-    font-size: 16px;
-}
-
-#about-us a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-#about-us a:hover {
-    text-decoration: underline;
-}
- /* Общие стили для верхнего блока */
-header {
-    background: rgba(0, 0, 0, 0.6); /* Прозрачный чёрный фон */
-    color: white;
-    padding: 10px 0;
-    font-size: 18px;
-    text-align: center;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between; /* Элементы разделены */
-    align-items: center;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-h1 {
-    font-size: 24px;
-    margin: 0;
-}
-
-#memory-seeds, #about-us {
-    font-size: 16px;
-}
-
-#about-us a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-#about-us a:hover {
-    text-decoration: underline;
-}
-
-/* Основное окно */
+/* Модальное окно "О нас" */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8); /* Полупрозрачный тёмный фон */
-    backdrop-filter: blur(10px); /* Эффект размытия */
-    animation: fadeIn 0.5s ease; /* Анимация появления */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: none; /* Скрыто по умолчанию */
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
 }
 
-/* Контент окна */
+/* Контент модального окна */
 .modal-content {
-    background: linear-gradient(135deg, #f9f9f9, #ffffff); /* Лёгкий градиент */
-    margin: 10% auto;
-    padding: 30px;
-    border-radius: 20px;
-    width: 70%;
-    max-width: 600px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    animation: slideIn 0.5s ease; /* Плавная анимация появления */
-    text-align: left;
-    font-family: 'Arial', sans-serif;
-    line-height: 1.8;
+  background: rgba(44, 47, 67, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 90%;
+  width: 300px;
+  text-align: center;
+  color: #ffcf70;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Заголовок */
 .modal-content h2 {
-    font-size: 28px;
-    font-weight: bold;
-    color: #1E88E5; /* Акцентный синий */
-    margin-bottom: 20px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+  margin: 0 0 10px;
 }
 
-/* Вводный текст */
-.modal-content p.intro {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: justify;
+.modal-content h3 {
+  margin: 15px 0 10px;
+  font-size: 1rem;
+  color: #ffffff;
 }
 
-/* Блок с выделением */
-.modal-content .highlight {
-    background: #f3f4f6; /* Светлый фон */
-    border-left: 5px solid #4CAF50; /* Зелёный акцент */
-    padding: 15px;
-    margin: 20px 0;
-    border-radius: 10px;
+.modal-content ul {
+  padding-left: 20px;
+  text-align: left;
+  margin: 10px 0;
+  color: #ffffff;
+  font-size: 0.9rem;
 }
 
-.modal-content .highlight p {
-    font-size: 17px;
-    color: #555;
-    text-align: justify;
+.modal-content p {
+  font-size: 0.9rem;
+  line-height: 1.5;
 }
 
-/* Основной текст */
-.modal-content p.details {
-    font-size: 16px;
-    color: #444;
-    margin: 20px 0;
-    text-align: justify;
+.modal-content button {
+  background: #ffcf70;
+  border: none;
+  border-radius: 5px;
+  color: #1e1e2f;
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
-/* Призыв к действию */
-.modal-content p.call-to-action {
-    font-size: 18px;
-    font-weight: bold;
-    color: #1E88E5;
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* Кнопка закрытия */
-.close-button {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    color: #555;
-    font-size: 24px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-}
-
-.close-button:hover {
-    color: #FF0000; /* Красный при наведении */
-}
-
-/* Анимации */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-50px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.modal-content button:hover {
+  background: #ffd585;
+  transform: scale(1.05);
 }
 
  
