@@ -1975,4 +1975,13 @@ h1 {
         opacity: 1;
     }
 }
+.modal-content p strong {
+    color: #1E88E5; /* Ярко-синий акцент */
+    text-transform: uppercase; /* Принудительное использование заглавных букв */
+}
+
+.modal-content p em {
+    font-style: italic;
+    color: #555; /* Нежный акцент для слова "hiraeth" */
+}
 
