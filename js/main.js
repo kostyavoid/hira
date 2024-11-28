@@ -94,7 +94,16 @@ function addParticles(e) {
   }
 }
 
-token.addEventListener('click', collectSprouts);
+// Обработчик клика
+token.addEventListener('click', (e) => {
+  addClickEffect(e); // Вспышка
+  addParticles(e); // Частицы
+  addTextEffect(e); // Текстовый эффект
+
+  // Анимация вдавливания
+  token.classList.add('active');
+  setTimeout(() => token.classList.remove('active'), 200);
+});
 
 bottomTab.addEventListener("click", () => {
   bottomTab.classList.toggle("open");
@@ -137,6 +146,59 @@ aboutModal.addEventListener("click", (e) => {
     setTimeout(() => aboutModal.style.display = "none", 500);
   }
 });
+// Эффект вспышки
+function addClickEffect(e) {
+  const clickEffect = document.createElement('div');
+  clickEffect.className = 'click-effect';
+
+  const rect = token.getBoundingClientRect();
+  clickEffect.style.top = `${e.clientY - rect.top}px`;
+  clickEffect.style.left = `${e.clientX - rect.left}px`;
+
+  token.appendChild(clickEffect);
+
+  setTimeout(() => clickEffect.remove(), 600); // Удаляем вспышку
+}
+
+// Частицы с разнообразным движением
+function addParticles(e) {
+  const rect = token.getBoundingClientRect();
+  for (let i = 0; i < 8; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+
+    const size = Math.random() * 8 + 4;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
+
+    particle.style.top = `${e.clientY - rect.top}px`;
+    particle.style.left = `${e.clientX - rect.left}px`;
+
+    const angle = Math.random() * 360;
+    const distance = Math.random() * 60 + 20;
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+
+    token.appendChild(particle);
+
+    setTimeout(() => particle.remove(), 1200); // Удаляем частицу
+  }
+}
+
+// Текстовый эффект
+function addTextEffect(e) {
+  const textEffect = document.createElement('div');
+  textEffect.className = 'text-effect';
+  textEffect.textContent = '+1';
+
+  const rect = token.getBoundingClientRect();
+  textEffect.style.top = `${e.clientY - rect.top - 20}px`;
+  textEffect.style.left = `${e.clientX - rect.left}px`;
+
+  token.appendChild(textEffect);
+
+  setTimeout(() => textEffect.remove(), 800); // Удаляем текст
+}
 
 
 
