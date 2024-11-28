@@ -204,6 +204,10 @@ function addTextEffect(e) {
 
   setTimeout(() => textEffect.remove(), 1000); // Удаляем текст
 }
+token.addEventListener('click', () => {
+  token.classList.add('active'); // Добавляем класс нажатия
+  setTimeout(() => token.classList.remove('active'), 200); // Убираем через 200мс
+});
 
 
 
