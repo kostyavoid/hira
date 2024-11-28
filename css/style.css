@@ -2022,7 +2022,7 @@ html, body {
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-5px) rotate(1deg); /* Лёгкое поднятие и поворот */
+    transform: translateY(-3px) rotate(0.5deg); /* Легкое движение */
   }
   100% {
     transform: translateY(0) rotate(0deg);
@@ -2032,48 +2032,43 @@ html, body {
 /* Анимация вдавливания токена */
 @keyframes tokenClick {
   0% {
-    transform: scale(1);
+    transform: scale(1); /* Исходное состояние */
   }
   50% {
-    transform: scale(0.95); /* Лёгкое уменьшение */
+    transform: scale(0.98); /* Легкое уменьшение */
   }
   100% {
-    transform: scale(1);
+    transform: scale(1); /* Возврат */
   }
 }
 
 /* Слабое бежевое свечение */
 @keyframes tokenGlow {
   0% {
-    box-shadow: 0 0 10px rgba(245, 245, 220, 0.4); /* Бежевое свечение */
+    box-shadow: 0 0 8px rgba(245, 245, 220, 0.4);
   }
   50% {
-    box-shadow: 0 0 20px rgba(245, 245, 220, 0.7); /* Сильнее */
+    box-shadow: 0 0 16px rgba(245, 245, 220, 0.6);
   }
   100% {
-    box-shadow: 0 0 10px rgba(245, 245, 220, 0.4);
+    box-shadow: 0 0 8px rgba(245, 245, 220, 0.4);
   }
 }
 
-/* Базовый стиль токена */
+/* Основной стиль токена */
 #token {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: 220px; /* Увеличен размер */
+  height: 220px;
   border-radius: 50%;
   background: radial-gradient(circle, #f9e4c8, #e8c8a4); /* Бежевый градиент */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(245, 245, 220, 0.5); /* Базовое свечение */
-  animation: tokenFloat 5s infinite ease-in-out, tokenGlow 3s infinite ease-in-out; /* Покачивание и свечение */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(245, 245, 220, 0.5);
+  animation: tokenFloat 6s infinite ease-in-out, tokenGlow 4s infinite ease-in-out; /* Покачивание и свечение */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* Реакция на клик */
 #token.active {
-  animation: tokenClick 0.3s ease; /* Плавное уменьшение */
-}
-
-/* Свечение при наведении */
-#token:hover {
-  animation: tokenGlow 3s infinite ease-in-out; /* Усиление свечения */
+  animation: tokenClick 0.4s ease; /* Плавное уменьшение */
 }
 
