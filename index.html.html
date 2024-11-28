@@ -18,10 +18,22 @@
     <div class="header-container">
         <div id="memory-seeds">Ростков памяти: <span id="seed-count">0</span></div>
         <h1>HIRA</h1>
-        <div id="about-us"><a href="#about">О нас</a></div>
+        <div id="about-us"><a href="#" onclick="openModal()">О нас</a></div>
     </div>
 </header>
 
+<!-- Модальное окно -->
+<div id="about-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">×</span>
+        <h2>О проекте HIRA</h2>
+        <p>
+            HIRA — это уникальный проект, символизирующий рост памяти и коллективное сознание.
+            Каждый токен — это "росток памяти", часть чего-то большего. Эта игра создана для
+            исследования внутреннего мира и восстановления ценностей через взаимодействие.
+        </p>
+    </div>
+</div>
 
     <!-- Центральный блок -->
     <main class="scene">
