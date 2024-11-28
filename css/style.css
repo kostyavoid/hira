@@ -2089,4 +2089,161 @@ h1 {
     }
 }
 
+  /* Основной стиль */
+body {
+    font-family: 'Poppins', sans-serif; /* Современный шрифт */
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    color: #333;
+}
+
+/* Верхний блок */
+header {
+    background: linear-gradient(90deg, #1e3c72, #2a5298); /* Эффект градиента */
+    color: white;
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Название HIRA */
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    flex: 1;
+    letter-spacing: 2px;
+}
+
+/* Ростков */
+#memory-seeds {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.seed-icon {
+    margin-right: 5px;
+}
+
+/* Ссылка "О нас" */
+#about-us a {
+    color: #FFD700;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#about-us a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Полупрозрачный тёмный фон */
+    backdrop-filter: blur(12px); /* Эффект размытия */
+    animation: fadeIn 0.5s ease; /* Анимация появления */
+}
+
+/* Содержимое окна */
+.modal-content {
+    background: #fff;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 60%;
+    max-width: 600px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease; /* Плавная анимация */
+    text-align: justify;
+    line-height: 1.6;
+}
+
+/* Заголовок */
+.modal-content h2 {
+    font-size: 24px;
+    color: #1e3c72;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Текст */
+.modal-content p {
+    font-size: 16px;
+    color: #555;
+}
+
+.modal-content .highlight {
+    background: #f9f9f9;
+    border-left: 4px solid #4CAF50;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+/* Кнопка закрытия */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: #555;
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #ff4d4d;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 
