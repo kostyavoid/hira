@@ -1733,3 +1733,41 @@ html, body {
   background: rgba(255, 207, 112, 0.2); /* Лёгкий фон при наведении */
   color: #ffffff; /* Подсветка текста */
 }
+ header {
+    background: #4CAF50; /* Цвет фона */
+    color: white; /* Цвет текста */
+    padding: 10px 0;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between; /* Разделение на три части */
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+#memory-seeds, #about-us {
+    font-size: 16px;
+}
+
+#about-us a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#about-us a:hover {
+    text-decoration: underline;
+}
+ 
