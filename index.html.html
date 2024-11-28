@@ -14,42 +14,29 @@
     <div class="top-popup" id="info-popup">Собирайте ростки памяти, чтобы получить токены HIRA!</div>
 
     <!-- Верхняя панель -->
-<header>
-        <div class="header-container">
-            <div id="memory-seeds">Ростков: <span id="seed-count">12</span></div>
-            <h1>HIRA</h1>
-            <div id="about-us"><a href="#" onclick="openModal()">О нас</a></div>
-        </div>
-    </header>
+<header class="top-bar">
+  <div class="top-left">
+    <span id="sprouts-info">Ростков: <span id="sprouts-count">12</span></span>
+  </div>
+  <h1>HIRA</h1>
+  <button class="about-button" id="about-btn">О нас</button>
+</header>
 
-    <!-- Модальное окно -->
-    <div id="about-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">×</span>
-            <h2>О проекте HIRA</h2>
-            <p class="intro">
-                <strong>HIRA</strong> — это проект, который создаёт основу для нового цифрового актива. В будущем токен <strong>HIRA</strong> станет важной частью экосистемы, объединяя память, рост и ценность.
-            </p>
-            <div class="highlight">
-                <p>
-                    <strong>Ваши "ростки"</strong> — это ключ к вашему месту в проекте. Чем больше вы собираете, тем больше токенов вы получите в будущем <strong>HIRA DROP</strong>. Эти токены будут распределяться на основе вашей активности.
-                </p>
-            </div>
-            <p class="details">
-                Мы создаём экосистему, где ваши действия определяют ваше будущее. <strong>HIRA</strong> готовится к листингу, и собранные вами "ростки" станут основой для участия в цифровом будущем проекта.
-            </p>
-            <p class="call-to-action">
-                Присоединяйтесь к <strong>HIRA</strong>, собирайте ростки и становитесь частью уникального цифрового актива!
-            </p>
-        </div>
-    </div>
-
-
-
-
-
-
-
+<!-- Модальное окно "О нас" -->
+<div class="modal" id="about-modal">
+  <div class="modal-content">
+    <h2>О нас</h2>
+    <p>HIRA — это не просто актив, это символ вашего вклада и связи с будущим. Вдохновленный философией "hiraeth", он объединяет ценность и смысл.</p>
+    <h3>Почему HIRA?</h3>
+    <ul>
+      <li>Ваш вклад, ваша награда. Активность превращается в токены — честно и прозрачно.</li>
+      <li>Символ значимости. Каждый токен отражает вашу связь с проектом и экосистемой.</li>
+      <li>Листинг впереди. Ранняя активность даст вам преимущества в будущем.</li>
+    </ul>
+    <p>HIRA — это шанс не просто участвовать, а стать частью чего-то большего. Присоединяйтесь!</p>
+    <button id="close-modal">Закрыть</button>
+  </div>
+</div>
     <!-- Центральный блок -->
     <main class="scene">
   
