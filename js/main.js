@@ -140,4 +140,61 @@ aboutModal.addEventListener("click", (e) => {
     }, 500);
   }
 });
+const token = document.getElementById('token');
+
+// Функция: Анимация вспышки при клике
+function addClickEffect(e) {
+  const clickEffect = document.createElement('div');
+  clickEffect.className = 'click-effect';
+
+  // Позиция вспышки относительно токена
+  clickEffect.style.top = `${e.clientY - token.getBoundingClientRect().top}px`;
+  clickEffect.style.left = `${e.clientX - token.getBoundingClientRect().left}px`;
+
+  token.appendChild(clickEffect);
+
+  setTimeout(() => {
+    clickEffect.remove();
+  }, 600); // Время анимации совпадает с CSS
+}
+
+// Функция: Добавить частицы
+function addParticles(e) {
+  for (let i = 0; i < 10; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+
+    // Рандомное начальное положение
+    const size = Math.random() * 6 + 4; // Размер частиц от 4 до 10px
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.top = `${e.clientY - token.getBoundingClientRect().top}px`;
+    particle.style.left = `${e.clientX - token.getBoundingClientRect().left}px`;
+
+    // Рандомное направление
+    const angle = Math.random() * 360;
+    const distance = Math.random() * 50 + 20; // Расстояние разлета
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${
+      Math.sin(angle) * distance
+    }px)`;
+
+    token.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 1000); // Удаляем частицы через 1 секунду
+  }
+}
+
+// Обработчик клика
+token.addEventListener('click', (e) => {
+  addClickEffect(e); // Вспышка
+  addParticles(e); // Частицы
+  token.classList.add('active'); // Анимация нажатия
+
+  setTimeout(() => {
+    token.classList.remove('active');
+  }, 200); // Возврат к нормальному состоянию
+});
+
 
