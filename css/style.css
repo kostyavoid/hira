@@ -1,0 +1,1735 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: url('assets/images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
+  user-select: none;
+  touch-action: manipulation;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Равномерное распределение между верхом и низом */
+  height: 100vh; /* Растягиваем контейнер на весь экран */
+  overflow: hidden;
+}
+
+
+
+/* Иконка информации */
+.info-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.info-icon img {
+  width: 100%;
+  height: 100%;
+}
+
+/* Всплывающий блок сверху */
+.top-popup {
+  position: fixed;
+  top: -50px; /* Скрыто за пределами экрана */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  padding: 10px 15px;
+  background: rgba(44, 47, 67, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ffcf70;
+  transition: top 0.5s ease, opacity 0.5s ease;
+  z-index: 1000;
+  opacity: 0;
+}
+
+.top-popup.visible {
+  top: 10px; /* Положение, когда блок виден */
+  opacity: 1;
+}
+
+/* Центральный контент */
+.scene {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background: url('assets/background.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+/* Токен */
+.main-icon {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%; /* Круглая форма */
+  overflow: hidden; /* Скрывает лишние части изображения */
+  box-shadow: 0 8px 12px rgba(255, 159, 69, 0.5);
+  cursor: pointer;
+  margin-bottom: 25px;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.main-icon:active {
+  transform: scale(0.95); /* Эффект вдавливания при нажатии */
+}
+
+.token-image {
+  width: 80%; /* Пропорциональный размер внутри токена */
+  height: auto;
+  display: block;
+  margin: auto;
+}
+
+.main-icon:active {
+  transform: scale(0.95); /* Вдавливание токена */
+}
+
+.main-icon img {
+  width: 100%; /* Подогнанный размер */
+  height: 100%;
+  border-radius: 50%;
+}
+
+.ripple-animation {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rippleEffect 0.6s ease-out forwards;
+}
+
+@keyframes rippleEffect {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.main-icon:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+@keyframes rippleLight {
+  from {
+    transform: scale(0);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.5); /* Волна под размер токена */
+    opacity: 0;
+  }
+}
+
+/* Прогресс уровня */
+.level-container {
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+  margin: 15px 0; /* Увеличен отступ */
+}
+
+.level-text {
+  font-size: 1.2rem; /* Увеличен текст */
+  color: #ffcf70;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px; /* Увеличена высота полосы */
+  background: #2c2f43;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, #ffcf70, #ff9f45);
+  box-shadow: 0 4px 6px rgba(255, 159, 69, 0.3);
+  height: 100%;
+  width: 0; /* Это значение изменяется JavaScript */
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* Кнопка для ускорения прогресса */
+.boost-button {
+  background: linear-gradient(145deg, #ffcf70, #ff9f45);
+  border: none;
+  border-radius: 10px; /* Увеличен радиус */
+  color: #1e1e2f;
+  font-size: 1.2rem; /* Увеличен текст */
+  font-weight: 600;
+  padding: 12px 18px; /* Увеличены отступы */
+  margin-top: 20px; /* Увеличен отступ */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 10px rgba(255, 159, 69, 0.5);
+}
+
+.boost-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(255, 159, 69, 0.5);
+}
+
+/* Информационный блок */
+.resources-container {
+  display: flex;
+  justify-content: space-around;
+  width: 90%;
+  max-width: 350px; /* Увеличен максимальный размер */
+  margin-top: 20px;
+  background: rgba(44, 47, 67, 0.8);
+  padding: 12px 20px; /* Увеличены отступы */
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.resources-container p {
+  margin: 0;
+  font-size: 1rem; /* Увеличен размер текста */
+  color: #ffcf70;
+}
+
+/* Частицы */
+.particle {
+  position: fixed;
+  width: 10px; /* Увеличен размер частиц */
+  height: 10px;
+  background: rgba(255, 207, 112, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleMove 0.8s ease-out forwards;
+}
+
+@keyframes particleMove {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+/* Табличка повышения уровня */
+.level-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.level-popup.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.level-popup-content {
+  background: rgba(44, 47, 67, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 300px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.level-popup-content h2 {
+  font-size: 1.5rem;
+  color: #ffcf70;
+  margin-bottom: 10px;
+}
+
+.level-popup-content p {
+  font-size: 1rem;
+  color: #f5f5f5;
+}
+
+/* Нижнее меню */
+.bottom-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  background: #1e1e2f;
+  border-top: 1px solid #ffcf70;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.menu-button {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #2c2f43;
+  border: none;
+  border-radius: 12px;
+  color: #ffcf70;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.menu-button img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.menu-button:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 6px 12px rgba(255, 207, 112, 0.4);
+}
+
+.menu-button.active {
+  background: linear-gradient(145deg, #ff9f45, #cc7a33);
+  color: #f8f4ed;
+  box-shadow: 0 3px 8px rgba(204, 122, 51, 0.5);
+  transform: scale(1.03);
+}
+
+/*
+/* Адаптивность */
+@media (max-width: 480px) {
+  .main-icon {
+    width: 200px;
+    height: 200px;
+  }
+
+  .boost-button {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+
+  .resources-container {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .menu-button {
+    width: 60px;
+    height: 60px;
+    font-size: 0.7rem;
+  }
+
+.main-icon.active {
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.main-icon.relax {
+  animation: relaxAnimation 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes relaxAnimation {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ripple-animation {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rippleEffect 1.2s ease-out forwards;
+}
+
+@keyframes rippleEffect {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}.ripple-animation {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  animation: rippleEffect 1.2s ease-out forwards;
+}
+
+@keyframes rippleEffect {
+  from {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.main-icon.active {
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.main-icon.relax {
+  animation: relaxAnimation 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes relaxAnimation {
+  0% {
+    transform: scale(0.95);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.main-icon {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+.bottom-menu {
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+}
+.main-icon {
+  position: relative;
+}
+
+.main-icon::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 207, 112, 0.3), transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-20px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+body {
+  background: url('assets/images/background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  transform: translateZ(0);
+  perspective: 1000px;
+}
+
+.main-icon {
+  transform: translateZ(50px);
+}
+
+.blur-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0.5px);
+  z-index: -1;
+}
+
+.main-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8c14e, #d8a028); /* Основной цвет */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Внешняя тень для объёма */
+}
+
+/* Контейнер для ресурсов: Уровень, Ростки, Энергия */
+.resources-container {
+  display: flex;
+  justify-content: space-between; /* Равное расстояние между элементами */
+  align-items: center;
+  margin: 15px auto; /* Центрирование и отступы */
+  padding: 8px 15px; /* Внутренние отступы */
+  width: 85%; /* Оптимальная ширина */
+  max-width: 320px; /* Ограничение ширины */
+  background: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  border-radius: 10px; /* Закруглённые углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
+  color: #ffffff; /* Белый текст */
+  font-size: 0.9rem; /* Размер текста */
+  font-weight: bold;
+}
+
+.resources-container p {
+  margin: 0;
+  text-align: center;
+  font-size: 0.9rem; /* Оптимальный размер текста */
+}
+
+.resources-container span {
+  display: block;
+  margin-top: 3px;
+  font-size: 1.1rem; /* Размер цифр */
+  color: #ffcf70; /* Цвет чисел */
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  position: relative;
+  margin: 10px auto 0; /* Центрирование и отступ сверху */
+  width: 85%; /* Ширина прогресс-бара */
+  max-width: 320px; /* Максимальная ширина */
+  height: 8px; /* Высота полосы прогресса */
+  background: rgba(0, 0, 0, 0.3); /* Тёмный фон */
+  border-radius: 5px; /* Закругляем края */
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Лёгкая тень */
+}
+
+.progress-fill {
+  height: 100%;
+  width: 50%; /* Пример заполнения */
+  background: linear-gradient(90deg, #ffcf70, #ff9f45); /* Градиент заполнения */
+  border-radius: 5px; /* Соответствие форме родителя */
+  transition: width 0.4s ease-in-out; /* Плавное заполнение */
+}
+
+/* Токен */
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px; /* Увеличиваем размер токена */
+  height: 250px;
+  margin: 20px auto; /* Центрирование и отступы */
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8c14e, #d8a028); /* Градиент для объёма */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Тень */
+}
+
+/* Контейнер для ресурсов: Уровень, Ростки, Энергия */
+.resources-container {
+  display: flex;
+  justify-content: space-between; /* Равномерное распределение */
+  align-items: center;
+  margin: 30px auto 0; /* Опускаем ниже токена */
+  padding: 5px 15px; /* Уменьшенные внутренние отступы */
+  width: 75%; /* Уменьшаем ширину для компактности */
+  max-width: 300px; /* Ограничение ширины */
+  background: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+  border-radius: 10px; /* Закруглённые углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
+  color: #ffffff; /* Белый текст */
+  font-size: 0.8rem; /* Чуть меньше текста */
+}
+
+.resources-container p {
+  margin: 0;
+  text-align: center;
+  font-size: 0.8rem; /* Уменьшаем текст */
+}
+
+.resources-container span {
+  display: block;
+  margin-top: 3px;
+  font-size: 1rem; /* Немного уменьшили цифры */
+  color: #ffcf70; /* Цвет цифр */
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  position: relative;
+  margin: 15px auto 0; /* Опускаем ниже ресурса */
+  width: 75%; /* Ширина прогресс-бара совпадает с ресурсами */
+  max-width: 300px; /* Максимальная ширина */
+  height: 8px; /* Высота полосы прогресса */
+  background: rgba(0, 0, 0, 0.3); /* Тёмный фон */
+  border-radius: 5px; /* Закругляем края */
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Лёгкая тень */
+}
+
+.progress-fill {
+  height: 100%;
+  width: 50%; /* Пример заполнения */
+  background: linear-gradient(90deg, #ffcf70, #ff9f45); /* Градиент заполнения */
+  border-radius: 5px; /* Соответствие форме родителя */
+  transition: width 0.4s ease-in-out; /* Плавное заполнение */
+}
+
+/* Прогресс-кольцо */
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px; /* Размер кольца больше, чем токен */
+  height: 280px;
+  border-radius: 50%;
+  background: conic-gradient(
+    #ffcf70 0% 50%, /* Цвет заполненной части */
+    rgba(0, 0, 0, 0.3) 50% 100% /* Цвет незаполненной части */
+  );
+  z-index: -1; /* Располагается позади токена */
+}
+
+/* Токен */
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Размер токена */
+  height: 200px;
+  margin: 20px auto; /* Центрирование */
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8c14e, #d8a028); /* Градиент для объёма */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Тень */
+}
+
+/* Контейнер для ресурсов */
+.resources-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto;
+  padding: 5px 15px;
+  width: 75%;
+  max-width: 300px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.resources-container p {
+  margin: 0;
+}
+
+.resources-container span {
+  display: block;
+  font-size: 1rem;
+  color: #ffcf70;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  position: relative;
+  margin: 15px auto 0; /* Центрирование и отступ сверху */
+  width: 85%; /* Ширина прогресс-бара */
+  max-width: 320px; /* Максимальная ширина */
+  height: 12px; /* Высота полосы прогресса */
+  background: rgba(0, 0, 0, 0.3); /* Тёмный фон для прогресса */
+  border-radius: 15px; /* Закруглённые углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
+  overflow: hidden;
+}
+
+/* Заполнение прогресс-бара */
+.progress-fill {
+  height: 100%;
+  width: 50%; /* Заполнено на 50% (пример) */
+  background: linear-gradient(to right, #ffcf70, #ff9f45); /* Градиент заполнения */
+  border-radius: 15px; /* Соответствие форме родителя */
+  transition: width 0.4s ease-in-out; /* Плавное заполнение */
+}
+
+/* Индикаторы делений (маркеры) */
+.progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 8px;
+  background: #fff; /* Белые маркеры */
+  opacity: 0.5;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  transform: translate(-50%, -50%);
+  width: 2px;
+  height: 8px;
+  background: #fff;
+  opacity: 0.5;
+}
+
+/* Контейнер для дыма */
+.smoke-container {
+  position: absolute;
+  top: 50%; /* Положение относительно токена */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px; /* Ширина области с дымом */
+  height: 300px; /* Высота области с дымом */
+  pointer-events: none; /* Чтобы не мешал кликам */
+}
+
+/* Элемент дыма */
+.smoke {
+  position: absolute;
+  bottom: 0;
+  width: 40px; /* Размер частиц дыма */
+  height: 40px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  opacity: 0.5;
+  animation: rise 4s infinite ease-in-out, drift 6s infinite ease-in-out;
+}
+
+/* Анимация поднятия дыма */
+@keyframes rise {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Анимация дрейфа дыма */
+@keyframes drift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: translateX(-20px);
+  }
+}
+
+/* Контейнер для тумана */
+.fog-container {
+  position: absolute;
+  top: 50%; /* Расположение относительно токена */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; /* Ширина тумана */
+  height: 400px; /* Высота тумана */
+  pointer-events: none; /* Чтобы туман не мешал кликам */
+  overflow: hidden; /* Скрываем выходящие элементы */
+  z-index: -1; /* Туман за токеном */
+}
+
+/* Элементы тумана */
+.fog {
+  position: absolute;
+  bottom: 0;
+  width: 150px; /* Размер туманных частиц */
+  height: 150px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0)); /* Полупрозрачный туман */
+  border-radius: 50%;
+  opacity: 0.3; /* Начальная прозрачность */
+  animation: fog-rise 8s infinite ease-in-out, fog-drift 10s infinite ease-in-out;
+}
+
+/* Анимация подъёма тумана */
+@keyframes fog-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-300px) scale(1.5); /* Частица поднимается вверх и увеличивается */
+    opacity: 0;
+  }
+}
+
+/* Анимация дрейфа тумана */
+@keyframes fog-drift {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(50px);
+  }
+  100% {
+    transform: translateX(-50px);
+  }
+}
+
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8c14e, #d8a028);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px 5px rgba(255, 207, 112, 0.5);
+  animation: glow 2s infinite alternate ease-in-out;
+}
+
+/* Анимация свечения */
+@keyframes glow {
+  from {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px 3px rgba(255, 207, 112, 0.3);
+  }
+  to {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 25px 8px rgba(255, 207, 112, 0.7);
+  }
+}
+
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Размер токена */
+  height: 200px;
+  margin: 20px auto; /* Центрирование */
+  border-radius: 50%; /* Закруглённая форма */
+  background: radial-gradient(circle, #f9e4c8, #e8c8a4); /* Бежевый градиент */
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.3), /* Тень токена */
+    0 0 30px 10px rgba(255, 229, 185, 0.5); /* Свечение */
+  animation: beige-glow 3s infinite alternate ease-in-out;
+}
+
+/* Анимация мягкого свечения */
+@keyframes beige-glow {
+  from {
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.3), 
+      0 0 25px 8px rgba(255, 229, 185, 0.4); /* Начальное свечение */
+  }
+  to {
+    box-shadow: 
+      0 10px 20px rgba(0, 0, 0, 0.3), 
+      0 0 40px 15px rgba(255, 229, 185, 0.7); /* Усиленное свечение */
+  }
+}
+
+.progress-fill {
+  animation: glow-progress 1s ease-in-out;
+}
+
+@keyframes glow-progress {
+  0% {
+    box-shadow: 0 0 5px #ffcf70;
+  }
+  50% {
+    box-shadow: 0 0 20px #ffcf70;
+  }
+  100% {
+    box-shadow: 0 0 5px #ffcf70;
+  }
+}
+
+/* Всплывающее уведомление нового уровня */
+.level-up-flash {
+  position: absolute;
+  top: 45%; /* Центрируем относительно токена */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem; /* Размер текста */
+  color: #ffcf70; /* Цвет текста */
+  font-weight: bold;
+  opacity: 0;
+  animation: level-up 2s ease-out forwards; /* Анимация */
+}
+
+/* Анимация для вспышки */
+@keyframes level-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2); /* Увеличение текста */
+  }
+}
+
+#sprouts {
+  color: #ffcf70; /* Золотистый цвет для прогресса */
+  font-weight: bold;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  position: relative;
+  margin: 10px auto;
+  width: 85%;
+  max-width: 300px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%; /* Изначально прогресс на нуле */
+  background: linear-gradient(90deg, #ffcf70, #ff9f45);
+  border-radius: 5px;
+  transition: width 0.4s ease-in-out; /* Плавная анимация */
+}
+
+/* Уведомление нового уровня */
+.level-up-flash {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: #ffcf70;
+  font-weight: bold;
+  opacity: 0;
+  animation: level-up 2s ease-out forwards;
+}
+
+@keyframes level-up {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+/* Вспышка при клике */
+.click-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 207, 112, 0.5);
+  animation: click-effect 0.5s ease-out forwards;
+}
+
+@keyframes click-effect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+/* Вспышка при клике */
+.click-effect {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 207, 112, 0.5);
+  animation: click-effect 0.5s ease-out forwards;
+}
+
+@keyframes click-effect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+/* Прогресс-бар */
+.progress-fill {
+  height: 100%;
+  width: 0%; /* Начальное значение */
+  background: linear-gradient(90deg, #ffcf70, #ff9f45);
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out; /* Плавное заполнение */
+}
+
+/* Блок с информацией: уровень и ростки */
+.resources-container {
+  position: relative;
+  margin: 20px auto; /* Центрирование и отступ сверху */
+  padding: 15px 20px; /* Внутренние отступы */
+  width: 85%; /* Ширина блока */
+  max-width: 320px; /* Ограничение ширины */
+  background: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+  border-radius: 12px; /* Закруглённые углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
+  text-align: center; /* Центрирование текста */
+  font-size: 0.9rem; /* Размер текста */
+  color: #ffffff; /* Цвет текста */
+  font-weight: bold;
+}
+
+/* Текстовые элементы внутри блока */
+.resources-container p {
+  margin: 5px 0; /* Расстояние между строками */
+}
+
+.resources-container span {
+  display: block;
+  font-size: 1.2rem; /* Крупный шрифт для чисел */
+  color: #ffcf70; /* Цвет чисел */
+}
+
+/* Прогресс-бар под блоком */
+.progress-bar {
+  margin: 15px auto; /* Центрирование и отступ сверху */
+  width: 85%; /* Ширина прогресс-бара */
+  max-width: 320px; /* Максимальная ширина */
+  height: 8px; /* Высота полосы */
+  background: rgba(0, 0, 0, 0.3); /* Фон прогресса */
+  border-radius: 5px; /* Закругляем края */
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0; /* Изначально прогресс на нуле */
+  background: linear-gradient(90deg, #ffcf70, #ff9f45); /* Градиент */
+  border-radius: 5px; /* Соответствие форме родителя */
+  transition: width 0.4s ease-in-out; /* Плавное заполнение */
+}
+.resources-container {
+  animation: fade-in 0.8s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.main-icon {
+  margin-bottom: 40px; /* Увеличен отступ */
+}
+@media (max-width: 480px) {
+  .resources-container {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}
+/* Блок с информацией: уровень и ростки */
+.resources-container {
+  font-size: 0.8rem; /* Уменьшенный общий размер текста */
+  padding: 10px 15px; /* Уменьшенные отступы */
+}
+
+/* Текстовые элементы внутри блока */
+.resources-container p {
+  font-size: 0.85rem; /* Немного меньше основной информации */
+  margin: 3px 0; /* Уменьшенные отступы между строками */
+}
+
+.resources-container span {
+  font-size: 1rem; /* Уменьшенный размер чисел */
+}
+body {
+  background: url('assets/images/background.jpg') no-repeat center center;
+  background-size: contain; /* Картинка подгоняется под экран */
+  background-attachment: fixed; /* Фон остаётся фиксированным при прокрутке */
+  background-color: #000; /* Резервный цвет фона */
+}
+.main-icon {
+  width: 180px; /* Уменьшение размера */
+  height: 180px;
+  margin: auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.2)); /* Легкий градиент для выделения */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px 5px rgba(255, 255, 255, 0.2);
+}
+.blur-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0.5px); /* Размытие фона */
+  background: rgba(0, 0, 0, 0.3); /* Затемнение */
+  z-index: -1; /* За всеми элементами */
+}
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px; /* Размер токена */
+  height: 200px;
+  margin: 20px auto;
+  border-radius: 50%; /* Круглая форма */
+  background: radial-gradient(circle, #f9e4c8, #e8c8a4); /* Градиент для объёма */
+  box-shadow: 
+    inset 0 4px 8px rgba(255, 255, 255, 0.5), /* Внутренний свет */
+    inset 0 -4px 8px rgba(0, 0, 0, 0.3), /* Внутренняя тень */
+    0 10px 20px rgba(0, 0, 0, 0.4); /* Внешняя тень */
+}
+.main-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.6; /* Лёгкое свечение */
+  z-index: 1;
+}
+
+.main-icon::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 70%;
+  height: 35%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), transparent);
+  border-radius: 50%;
+  opacity: 0.4;
+  z-index: 2;
+}
+.main-icon {
+  background: radial-gradient(circle, rgba(249, 228, 200, 0.9), rgba(0, 0, 0, 0.2)), url('assets/images/background.jpg');
+  background-size: cover; /* Текстура фона */
+  mix-blend-mode: overlay; /* Смешивание с текстурой */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+.main-icon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+/* Токен с объёмным видом */
+.main-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(249, 228, 200, 0.8), rgba(0, 0, 0, 0.2)), url('assets/images/background.jpg');
+  background-size: cover;
+  mix-blend-mode: overlay;
+  box-shadow: 
+    inset 0 4px 8px rgba(255, 255, 255, 0.5),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.3),
+    0 10px 20px rgba(0, 0, 0, 0.4),
+    0 0 15px 5px rgba(255, 229, 185, 0.5);
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Отражение от фона */
+.main-icon-reflection {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%) scaleY(-1);
+  width: 200px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 229, 185, 0.2), transparent);
+  opacity: 0.5;
+  filter: blur(10px);
+  z-index: 0;
+}
+
+/* Световой акцент на фоне */
+body::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(255, 229, 185, 0.3), transparent);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Лёгкие движения токена */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Свечение токена */
+.main-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.main-icon::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  width: 70%;
+  height: 35%;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), transparent);
+  border-radius: 50%;
+  opacity: 0.4;
+  z-index: 2;
+} 
+
+/* Контейнер для дождя */
+.rain-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1; /* Позади основного контента */
+}
+
+/* Капля дождя */
+.raindrop {
+  position: absolute;
+  width: 1px; /* Узкая капля */
+  height: 20px; /* Длина капли */
+  background: rgba(255, 255, 255, 0.4); /* Полупрозрачный белый */
+  border-radius: 50%;
+  animation: rain-fall linear infinite;
+  transform: rotate(15deg); /* Падение под углом */
+}
+
+/* Анимация капель */
+@keyframes rain-fall {
+  from {
+    transform: translateY(-50px) translateX(-10px) rotate(15deg); /* Начальное падение */
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(100vh) translateX(10px) rotate(15deg); /* Завершение */
+    opacity: 0.2;
+  }
+}
+
+/* Всплывающее уведомление сверху */
+.top-popup {
+  position: fixed;
+  top: -50px; /* Скрыто за пределами экрана */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  padding: 10px 15px;
+  background: rgba(44, 47, 67, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ffcf70;
+  transition: top 0.5s ease, opacity 0.5s ease;
+  z-index: 2000; /* Увеличиваем z-index */
+  opacity: 0;
+}
+
+.top-popup.visible {
+  top: 10px; /* Положение, когда блок виден */
+  opacity: 1;
+}
+/* Нижнее меню */
+.bottom-menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15px 10px;
+  background: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+  backdrop-filter: blur(8px); /* Размытие для стиля */
+  border-top: 2px solid rgba(255, 255, 255, 0.2); /* Легкий верхний бордер */
+  border-radius: 15px 15px 0 0; /* Закругленные углы сверху */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5); /* Тень для объема */
+  z-index: 1000;
+}
+
+/* Кнопки меню */
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(44, 47, 67, 0.8); /* Фон кнопки */
+  border: none;
+  border-radius: 12px;
+  color: #ffcf70;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Легкая тень */
+}
+
+.menu-button img {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 5px;
+}
+
+.menu-button span {
+  font-size: 0.75rem;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Эффекты при наведении */
+.menu-button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(145deg, #ffcf70, #ff9f45);
+  box-shadow: 0 6px 12px rgba(255, 159, 69, 0.5);
+  color: #ffffff;
+}
+
+/* Активная кнопка */
+.menu-button.active {
+  background: linear-gradient(145deg, #ff9f45, #cc7a33);
+  color: #f8f4ed;
+  box-shadow: 0 3px 8px rgba(204, 122, 51, 0.5);
+  transform: scale(1.03);
+}
+
+/* Анимация нажатия */
+.menu-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+/* Верхняя панель */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Растягиваем блок по ширине экрана */
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Центрируем элементы по вертикали */
+  padding: 10px 15px; /* Равные отступы со всех сторон */
+  background: rgba(0, 0, 0, 0.4); /* Полупрозрачный фон */
+  backdrop-filter: blur(8px); /* Размытие фона */
+  border-radius: 0 0 12px 12px; /* Закругляем только нижние углы */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Лёгкая тень снизу */
+  z-index: 1000; /* Поднимаем блок поверх других элементов */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Линия внизу */
+  margin: 0; /* Убираем возможные отступы */
+  box-sizing: border-box; /* Включаем рамки и отступы в расчёт ширины */
+}
+
+/* Текст заголовка */
+.top-bar h1 {
+  flex: 1; /* Распределяем место для текста */
+  text-align: center; /* Центрируем текст */
+  font-size: 1.5rem;
+  color: #ffcf70;
+  font-weight: bold;
+  margin: 0; /* Убираем отступы */
+}
+
+/* Кнопки */
+.top-bar button {
+  background: rgba(255, 255, 255, 0.1); /* Полупрозрачный фон */
+  border: none; /* Убираем границу */
+  color: #ffcf70;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 6px 12px; /* Внутренние отступы */
+  border-radius: 8px; /* Закругляем углы кнопок */
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease; /* Плавные эффекты при наведении */
+}
+
+.top-bar button:hover {
+  background: rgba(255, 207, 112, 0.2); /* Осветляем фон */
+  color: #ffffff;
+}
+
+/* Убираем лишние отступы и добавляем точность */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Новый стиль для блока уровня и ростков */
+/* Обновлённый стиль для блока уровня и ростков */
+/* Исправленный стиль для блока уровня и ростков */
+.info-bar {
+  position: absolute;
+  bottom: 25px; /* Расстояние от нижнего меню уменьшено */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between; /* Равномерное распределение */
+  align-items: center;
+  width: 90%; /* Ширина блока */
+  max-width: 320px; /* Максимальная ширина */
+  padding: 10px 15px; /* Компактные отступы */
+  background: rgba(20, 20, 30, 0.9); /* Тёмный, полупрозрачный фон */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Лёгкая рамка */
+  border-radius: 12px; /* Закругленные углы */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Лёгкая тень */
+  backdrop-filter: blur(6px); /* Эффект размытия */
+  z-index: 10; /* Поверх остальных элементов */
+}
+
+/* Элементы внутри */
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ffffff;
+  font-size: 0.9rem; /* Оптимальный размер текста */
+}
+
+.info-label {
+  font-size: 0.8rem; /* Метка */
+  color: #ffcf70;
+  font-weight: bold;
+}
+
+.info-value {
+  font-size: 1rem; /* Значение */
+  color: #ffffff;
+  font-weight: bold;
+}
+/* Общий контейнер */
+.info-container {
+  position: absolute;
+  bottom: 100px; /* Расстояние от нижнего блока */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px; /* Расстояние между блоками */
+  width: 90%;
+  max-width: 300px;
+  z-index: 10;
+}
+
+/* Блок уровня */
+.level-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(20, 20, 30, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  width: 100%;
+  max-width: 300px;
+}
+
+.level-label {
+  font-size: 0.8rem;
+  color: #ffcf70;
+  font-weight: bold;
+}
+
+.level-value {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Блок ростков памяти */
+.sprouts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(20, 20, 30, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  width: 100%;
+  max-width: 300px;
+}
+
+.sprouts-label {
+  font-size: 0.8rem;
+  color: #ffcf70;
+  font-weight: bold;
+}
+
+.sprouts-value {
+  font-size: 1.5rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Прогресс-бар */
+.progress-bar {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcf70, #ff9f45);
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
+/* Общий контейнер */
+.info-wrapper {
+  position: absolute;
+  bottom: 20px; /* Расстояние от нижнего края */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+}
+
+/* Прогресс-бар */
+.progress-container {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ffcf70, #ff9f45);
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* Вкладка */
+.bottom-tab {
+  position: relative;
+  width: 100%;
+  background: rgba(20, 20, 30, 0.9);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 8px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  max-height: 30px; /* Высота в закрытом состоянии */
+  cursor: pointer;
+  box-shadow: 0 -4px 8px rgba(255, 255, 255, 0.3); /* Лёгкая постоянная подсветка */
+}
+
+/* Хватка с пульсацией */
+.tab-handle {
+  width: 30px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  margin: 5px auto;
+  border-radius: 2px;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* Содержимое вкладки */
+.tab-content {
+  display: none;
+  font-size: 0.9rem;
+  color: #ffcf70;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.bottom-tab.open .tab-content {
+  display: block;
+}
+
+.bottom-tab.open {
+  max-height: 120px; /* Высота в открытом состоянии */
+  padding: 10px 0;
+  box-shadow: 0 -6px 12px rgba(255, 255, 255, 0.3), 0 -3px 8px rgba(255, 255, 255, 0.2);
+}
+/* Верхний блок */
+/* Верхний блок */
+.top-bar {
+  position: absolute;
+  top: 0; /* Плотно прилегает к верхнему краю */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%; /* Занимает всю ширину экрана */
+  max-width: 400px; /* Максимальная ширина для десктопа */
+  background: rgba(20, 20, 30, 0.8); /* Полупрозрачный тёмный фон */
+  padding: 8px 12px; /* Умеренные отступы */
+  border-radius: 0 0 10px 10px; /* Скругляем только нижние углы */
+  display: flex;
+  justify-content: space-between; /* Распределение контента по краям */
+  align-items: center; /* Центрирование контента по вертикали */
+  backdrop-filter: blur(6px); /* Размытие для "стеклянного" эффекта */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5); /* Тень для выделения */
+  z-index: 10; /* Поверх остальных элементов */
+}
+
+/* Заголовок внутри верхнего блока */
+.top-bar h1 {
+  font-size: 1rem; /* Компактный текст */
+  color: #ffcf70; /* Золотистый цвет */
+  margin: 0;
+  text-align: center;
+  flex-grow: 1; /* Растягиваем заголовок */
+  letter-spacing: 1px; /* Лёгкое разрежение текста */
+  text-transform: uppercase; /* Верхний регистр для солидности */
+}
+
+/* Кнопки в верхнем блоке */
+.top-bar button {
+  background: none;
+  border: none;
+  color: #ffcf70;
+  font-size: 0.8rem; /* Компактный размер текста */
+  font-weight: bold;
+  cursor: pointer;
+  padding: 5px 10px; /* Минимальные отступы */
+  border-radius: 5px; /* Лёгкое скругление кнопок */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Плавное изменение стиля */
+}
+
+.top-bar button:hover {
+  background: rgba(255, 207, 112, 0.2); /* Лёгкий фон при наведении */
+  color: #ffffff; /* Подсветка текста */
+}

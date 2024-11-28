@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HIRA Game</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background: url('assets/images/background.jpg') no-repeat center center fixed; background-size: cover;">
+  <div class="blur-layer"></div>
+
+  <div class="main-container">
+    <!-- Всплывающее сообщение сверху -->
+    <div class="top-popup" id="info-popup">Собирайте ростки памяти, чтобы получить токены HIRA!</div>
+
+    <!-- Верхняя панель -->
+  <header class="top-bar">
+  <button class="close-button">Закрыть</button>
+  <h1>HIRA</h1>
+  <button class="settings-button">Настройки</button>
+</header>
+
+    <!-- Центральный блок -->
+    <main class="scene">
+  
+   
+      <!-- Контейнер с туманом -->
+      <div class="fog-container">
+        <div class="fog" style="left: 20%; animation-delay: 0s;"></div>
+        <div class="fog" style="left: 40%; animation-delay: 2s;"></div>
+        <div class="fog" style="left: 60%; animation-delay: 4s;"></div>
+        <div class="fog" style="left: 80%; animation-delay: 6s;"></div>
+      </div>
+
+      <!-- Центральный токен -->
+  <div class="main-icon" id="token">
+    <img src="assets/icon-token.png" alt="Иконка HIRA" class="token-image">
+  </div>
+
+  <!-- Информационный блок -->
+  <div class="info-wrapper">
+  <!-- Прогресс-бар -->
+  <div class="progress-container">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 40%;"></div>
+    </div>
+  </div>
+
+  <!-- Вкладка -->
+  <div class="bottom-tab" id="bottom-tab">
+    <div class="tab-handle"></div>
+    <div class="tab-content">
+      <p>Уровень: <span id="level">1</span></p>
+      <p>Ростки памяти: <span id="sprouts">20/50</span></p>
+    </div>
+  </div>
+</div>
+</main>
+
+      <!-- Уведомление о новом уровне -->
+      <div id="level-up-flash" class="level-up-flash" style="display: none;">
+        Новый уровень!
+      </div>
+
+
+      <!-- Частицы анимации -->
+      <div class="particle" style="top: 50%; left: 30%; animation-delay: 0s;"></div>
+      <div class="particle" style="top: 20%; left: 70%; animation-delay: 1s;"></div>
+      <div class="particle" style="top: 80%; left: 50%; animation-delay: 2s;"></div>
+    </main>
+
+    <!-- Нижнее меню -->
+    <footer class="bottom-menu">
+      <button class="menu-button active" data-tab="echo">
+        <img src="assets/icon-echo.png" alt="Эхо">
+        Эхо
+      </button>
+      <button class="menu-button" data-tab="shards">
+        <img src="assets/icon-shards.png" alt="Осколки">
+        Осколки
+      </button>
+      <button class="menu-button" data-tab="connections">
+        <img src="assets/icon-connections.png" alt="Связи">
+        Связи
+      </button>
+      <button class="menu-button" data-tab="tasks">
+        <img src="assets/icon-tasks.png" alt="Задания">
+        Задания
+      </button>
+      <button class="menu-button" data-tab="airdrop">
+        <img src="assets/icon-airdrop.png" alt="Airdrop">
+        Airdrop
+      </button>
+    </footer>
+  </div>
+
+  <!-- Подключение JavaScript -->
+  <script src="js/main.js"></script>
+</body>
+</html>
