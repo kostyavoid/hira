@@ -115,20 +115,29 @@ const aboutBtn = document.getElementById("about-btn");
 const aboutModal = document.getElementById("about-modal");
 const closeModal = document.getElementById("close-modal");
 
-// Открыть модальное окно
+// Открыть модальное окно с анимацией
 aboutBtn.addEventListener("click", () => {
-  aboutModal.classList.add("show");
+  aboutModal.style.display = "flex";
+  setTimeout(() => {
+    aboutModal.classList.add("open");
+  }, 10);
 });
 
 // Закрыть модальное окно
 closeModal.addEventListener("click", () => {
-  aboutModal.classList.remove("show");
+  aboutModal.classList.remove("open");
+  setTimeout(() => {
+    aboutModal.style.display = "none";
+  }, 500);
 });
 
 // Закрытие по клику вне модального окна
 aboutModal.addEventListener("click", (e) => {
   if (e.target === aboutModal) {
-    aboutModal.classList.remove("show");
+    aboutModal.classList.remove("open");
+    setTimeout(() => {
+      aboutModal.style.display = "none";
+    }, 500);
   }
 });
 
