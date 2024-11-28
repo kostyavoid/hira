@@ -1882,5 +1882,73 @@ html, body {
 #token {
   transition: transform 0.1s ease;
 }
- 
+ /* Эффект вспышки */
+.click-effect {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 207, 112, 0.1));
+  animation: clickEffect 0.6s ease-out forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Частицы */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleMove 1.2s ease-out forwards;
+}
+
+@keyframes particleMove {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Текстовый эффект */
+.text-effect {
+  position: absolute;
+  font-size: 1rem;
+  color: #ffcf70;
+  font-weight: bold;
+  animation: textRise 0.8s ease-out forwards;
+}
+
+@keyframes textRise {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+}
+
+/* Анимация нажатия токена */
+#token.active {
+  transform: scale(0.9); /* Вдавливание токена */
+  transition: transform 0.1s ease;
+}
+
+#token {
+  transition: transform 0.1s ease;
+}
+
 
