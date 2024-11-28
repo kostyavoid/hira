@@ -1781,11 +1781,11 @@ html, body {
 }
 
 .modal-content h2 {
-  margin: 0 0 10px;
+  margin: 0 0 0px;
 }
 
 .modal-content h3 {
-  margin: 15px 0 10px;
+  margin: 0px 0 0px;
   font-size: 1rem;
   color: #ffffff;
 }
