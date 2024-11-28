@@ -110,21 +110,25 @@ document.addEventListener("DOMContentLoaded", () => {
   showTopPopup('Собирайте ростки памяти!');
 });
 setInterval(restoreEnergy, 10000);
+// Переменные для модального окна
+const aboutBtn = document.getElementById("about-btn");
+const aboutModal = document.getElementById("about-modal");
+const closeModal = document.getElementById("close-modal");
+
 // Открыть модальное окно
-function openModal() {
-    document.getElementById('about-modal').style.display = 'block';
-}
+aboutBtn.addEventListener("click", () => {
+  aboutModal.style.display = "flex";
+});
 
 // Закрыть модальное окно
-function closeModal() {
-    document.getElementById('about-modal').style.display = 'none';
-}
+closeModal.addEventListener("click", () => {
+  aboutModal.style.display = "none";
+});
 
-// Закрытие окна при клике вне его
-window.onclick = function(event) {
-    const modal = document.getElementById('about-modal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
+// Закрытие по клику вне модального окна
+aboutModal.addEventListener("click", (e) => {
+  if (e.target === aboutModal) {
+    aboutModal.style.display = "none";
+  }
+});
 
