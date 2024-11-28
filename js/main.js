@@ -117,18 +117,18 @@ const closeModal = document.getElementById("close-modal");
 
 // Открыть модальное окно
 aboutBtn.addEventListener("click", () => {
-  aboutModal.style.display = "flex";
+  aboutModal.classList.add("show");
 });
 
 // Закрыть модальное окно
 closeModal.addEventListener("click", () => {
-  aboutModal.style.display = "none";
+  aboutModal.classList.remove("show");
 });
 
 // Закрытие по клику вне модального окна
 aboutModal.addEventListener("click", (e) => {
   if (e.target === aboutModal) {
-    aboutModal.style.display = "none";
+    aboutModal.classList.remove("show");
   }
 });
 
