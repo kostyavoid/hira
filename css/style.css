@@ -1720,6 +1720,7 @@ html, body {
 
 /* Текст о ростках */
 #sprouts-info {
+  margin: 0;
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: bold;
@@ -1727,6 +1728,7 @@ html, body {
 
 /* Кнопка "О нас" */
 .about-button {
+  margin: 0;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid #ffcf70;
   border-radius: 5px;
