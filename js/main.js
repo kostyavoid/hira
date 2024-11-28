@@ -211,6 +211,134 @@ token.addEventListener('click', () => {
     token.classList.remove('active'); // Убираем класс
   }, 400); // Время синхронизировано с анимацией
 });
+// Элементы DOM
+const token = document.getElementById('token');
+const sproutsDisplay = document.getElementById('sprouts');
+const sproutsCountDisplay = document.getElementById('sprouts-count');
+const energyDisplay = document.getElementById('energy');
+const levelDisplay = document.getElementById('level');
+const progressFill = document.getElementById('progress-fill');
+const infoPopup = document.getElementById('info-popup');
+const levelUpFlash = document.getElementById('level-up-flash');
+
+// Игровые переменные
+let sprouts = 0; // Текущие ростки
+let energy = 100; // Энергия
+let level = 1; // Текущий уровень
+let progress = 0; // Прогресс для текущего уровня
+let sproutsToNextLevel = 50; // Необходимые ростки для перехода на следующий уровень
+
+// Функция обновления прогресса
+function updateProgress() {
+  progressFill.style.width = `${(progress / sproutsToNextLevel) * 100}%`;
+
+  if (progress >= sproutsToNextLevel) {
+    progress = 0;
+    level++;
+    sproutsToNextLevel = Math.ceil(sproutsToNextLevel * 1.5); // Увеличение сложности
+    levelDisplay.textContent = level;
+    showLevelUpFlash();
+    showTopPopup(`Поздравляем! Вы достигли уровня ${level}`);
+  }
+}
+
+// Функция обновления интерфейса ростков
+function updateSproutsDisplay() {
+  sproutsDisplay.textContent = `${sprouts}/${sproutsToNextLevel}`;
+  sproutsCountDisplay.textContent = sprouts; // Обновление общего количества ростков
+}
+
+// Функция для отображения уведомления о новом уровне
+function showLevelUpFlash() {
+  levelUpFlash.style.display = 'block';
+  levelUpFlash.classList.add('visible');
+  setTimeout(() => {
+    levelUpFlash.style.display = 'none';
+    levelUpFlash.classList.remove('visible');
+  }, 2000);
+}
+
+// Сбор ростков
+function collectSprouts(e) {
+  if (energy > 0) {
+    energy--; // Уменьшаем энергию
+    sprouts++; // Увеличиваем ростки
+    progress++; // Увеличиваем прогресс
+    energyDisplay.textContent = energy; // Обновляем энергию
+    updateSproutsDisplay(); // Обновляем интерфейс ростков
+    updateProgress(); // Обновляем прогресс-бар
+    showWave(); // Анимация волны
+    addClickEffect(e); // Эффект клика
+    addParticles(e); // Частицы
+  } else {
+    showTopPopup('Энергия закончилась! Попробуйте позже.');
+  }
+}
+
+// Восстановление энергии
+function restoreEnergy() {
+  if (energy < 100) {
+    energy++;
+    energyDisplay.textContent = energy;
+  }
+}
+
+// Всплывающее сообщение
+function showTopPopup(message) {
+  infoPopup.textContent = message;
+  infoPopup.classList.add('visible');
+  setTimeout(() => infoPopup.classList.remove('visible'), 5000);
+}
+
+// Эффекты
+function showWave() {
+  const waveElement = document.createElement('div');
+  waveElement.className = 'ripple-animation';
+  token.appendChild(waveElement);
+  setTimeout(() => waveElement.remove(), 1200);
+}
+
+function addClickEffect(e) {
+  const clickEffect = document.createElement('div');
+  clickEffect.className = 'click-effect';
+  const rect = token.getBoundingClientRect();
+  clickEffect.style.top = `${e.clientY - rect.top}px`;
+  clickEffect.style.left = `${e.clientX - rect.left}px`;
+  token.appendChild(clickEffect);
+  setTimeout(() => clickEffect.remove(), 600);
+}
+
+function addParticles(e) {
+  const rect = token.getBoundingClientRect();
+  for (let i = 0; i < 8; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    const size = Math.random() * 8 + 6;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.top = `${e.clientY - rect.top}px`;
+    particle.style.left = `${e.clientX - rect.left}px`;
+    const angle = Math.random() * 360;
+    const distance = Math.random() * 60 + 30;
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${
+      Math.sin(angle) * distance
+    }px)`;
+    token.appendChild(particle);
+    setTimeout(() => particle.remove(), 1200);
+  }
+}
+
+// Обработчик клика по токену
+token.addEventListener('click', collectSprouts);
+
+// Восстановление энергии каждые 10 секунд
+setInterval(restoreEnergy, 10000);
+
+// При загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+  showTopPopup('Собирайте ростки памяти!');
+  updateSproutsDisplay(); // Начальное обновление интерфейса
+});
 
 
 
