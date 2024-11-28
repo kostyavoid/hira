@@ -2075,4 +2075,64 @@ html, body {
 #token:hover {
   animation: tokenGlow 2s infinite ease-in-out; /* Свечение при наведении */
 }
+/* Покачивание токена */
+@keyframes tokenFloat {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(1deg); /* Лёгкое поднятие и поворот */
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* Анимация вдавливания токена */
+@keyframes tokenClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95); /* Лёгкое уменьшение */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Слабое бежевое свечение */
+@keyframes tokenGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(245, 245, 220, 0.4); /* Бежевое свечение */
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(245, 245, 220, 0.7); /* Сильнее */
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(245, 245, 220, 0.4);
+  }
+}
+
+/* Базовый стиль токена */
+#token {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f9e4c8, #e8c8a4); /* Бежевый градиент */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(245, 245, 220, 0.5); /* Базовое свечение */
+  animation: tokenFloat 5s infinite ease-in-out, tokenGlow 3s infinite ease-in-out; /* Покачивание и свечение */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Реакция на клик */
+#token.active {
+  animation: tokenClick 0.3s ease; /* Плавное уменьшение */
+}
+
+/* Свечение при наведении */
+#token:hover {
+  animation: tokenGlow 3s infinite ease-in-out; /* Усиление свечения */
+}
 
