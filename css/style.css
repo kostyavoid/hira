@@ -1951,4 +1951,65 @@ html, body {
   transition: transform 0.1s ease;
 }
 
+/* Частицы со свечением */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1)); /* Светящийся градиент */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5); /* Мягкое свечение */
+  animation: particleMove 1.2s ease-out forwards;
+}
+
+@keyframes particleMove {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}
+
+/* Текстовый эффект "+1" */
+.text-effect {
+  position: absolute;
+  font-size: 1.5rem; /* Увеличили размер текста */
+  color: rgba(255, 255, 255, 0.9); /* Светлый цвет текста */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5); /* Свечение текста */
+  font-weight: bold;
+  animation: textRise 1s ease-out forwards;
+}
+
+@keyframes textRise {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.2); /* Увеличиваем текст и поднимаем */
+  }
+}
+
+/* Вспышка при клике */
+.click-effect {
+  position: absolute;
+  width: 50px; /* Увеличили вспышку */
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.1));
+  animation: clickEffect 0.6s ease-out forwards;
+}
+
+@keyframes clickEffect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
 
