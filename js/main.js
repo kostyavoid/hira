@@ -160,24 +160,28 @@ function addClickEffect(e) {
   setTimeout(() => clickEffect.remove(), 600); // Удаляем вспышку
 }
 
-// Частицы с разнообразным движением
+// Частицы с мягким свечением
 function addParticles(e) {
   const rect = token.getBoundingClientRect();
   for (let i = 0; i < 8; i++) {
     const particle = document.createElement('div');
     particle.className = 'particle';
 
-    const size = Math.random() * 8 + 4;
+    // Размер частицы
+    const size = Math.random() * 8 + 6; // Немного увеличили размер
     particle.style.width = `${size}px`;
     particle.style.height = `${size}px`;
-    particle.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
 
+    // Начальная позиция
     particle.style.top = `${e.clientY - rect.top}px`;
     particle.style.left = `${e.clientX - rect.left}px`;
 
+    // Движение частицы
     const angle = Math.random() * 360;
-    const distance = Math.random() * 60 + 20;
-    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+    const distance = Math.random() * 60 + 30; // Расстояние разлета
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${
+      Math.sin(angle) * distance
+    }px)`;
 
     token.appendChild(particle);
 
@@ -185,20 +189,22 @@ function addParticles(e) {
   }
 }
 
-// Текстовый эффект
+// Текстовый эффект "+1" с увеличением
 function addTextEffect(e) {
   const textEffect = document.createElement('div');
   textEffect.className = 'text-effect';
   textEffect.textContent = '+1';
 
+  // Позиция текста относительно токена
   const rect = token.getBoundingClientRect();
-  textEffect.style.top = `${e.clientY - rect.top - 20}px`;
+  textEffect.style.top = `${e.clientY - rect.top - 40}px`; // Смещение вверх
   textEffect.style.left = `${e.clientX - rect.left}px`;
 
   token.appendChild(textEffect);
 
-  setTimeout(() => textEffect.remove(), 800); // Удаляем текст
+  setTimeout(() => textEffect.remove(), 1000); // Удаляем текст
 }
+
 
 
 
