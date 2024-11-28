@@ -104,10 +104,26 @@ function createRain() {
     rainContainer.appendChild(raindrop);
   }
 }
-
 // Вызов функций
 document.addEventListener("DOMContentLoaded", () => {
   createRain();
   showTopPopup('Собирайте ростки памяти!');
 });
 setInterval(restoreEnergy, 10000);
+// Открыть модальное окно
+function openModal() {
+    document.getElementById('about-modal').style.display = 'block';
+}
+
+// Закрыть модальное окно
+function closeModal() {
+    document.getElementById('about-modal').style.display = 'none';
+}
+
+// Закрытие окна при клике вне его
+window.onclick = function(event) {
+    const modal = document.getElementById('about-modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
