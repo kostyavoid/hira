@@ -204,10 +204,14 @@ function addTextEffect(e) {
 
   setTimeout(() => textEffect.remove(), 1000); // Удаляем текст
 }
+// Обработчик клика по токену
 token.addEventListener('click', () => {
   token.classList.add('active'); // Добавляем класс нажатия
-  setTimeout(() => token.classList.remove('active'), 300); // Убираем через 300 мс
+  setTimeout(() => {
+    token.classList.remove('active'); // Убираем класс
+  }, 400); // Время синхронизировано с анимацией
 });
+
 
 
 
