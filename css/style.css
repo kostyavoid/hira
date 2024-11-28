@@ -2012,4 +2012,67 @@ html, body {
     opacity: 0;
   }
 }
+/* Анимация "дыхания" */
+@keyframes tokenBreath {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    transform: scale(1.05); /* Легкое увеличение */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 40px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2), 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Анимация при клике */
+@keyframes tokenClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9); /* Уменьшение при нажатии */
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Базовый стиль токена */
+#token {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #f8c14e, #d8a028); /* Градиент для объема */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 20px 5px rgba(255, 207, 112, 0.5);
+  animation: tokenBreath 3s infinite ease-in-out; /* Пульсация токена */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Реакция на клик */
+#token:active {
+  animation: tokenClick 0.2s ease;
+  transform: scale(0.9);
+}
+
+/* Свечение токена */
+@keyframes tokenGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(255, 207, 112, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 207, 112, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 20px rgba(255, 207, 112, 0.4);
+  }
+}
+
+#token:hover {
+  animation: tokenGlow 2s infinite ease-in-out; /* Свечение при наведении */
+}
 
