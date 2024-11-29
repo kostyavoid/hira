@@ -211,3 +211,4 @@ token.addEventListener('click', () => {
     token.classList.remove('active'); // Убираем класс
   }, 400); // Время синхронизировано с анимацией
 }); 
+-
