@@ -24,17 +24,17 @@ function showWave() {
 }
 
 function updateProgress() {
-  progressFill.style.width = ${(progress / maxProgress) * 100}%;
+  progressFill.style.width = `${(progress / maxProgress) * 100}%`;
   if (progress >= maxProgress) {
     progress = 0;
     level++;
     levelDisplay.textContent = level;
-    showTopPopup(Поздравляем! Вы достигли уровня ${level});
+    showTopPopup(`Поздравляем! Вы достигли уровня ${level}`);
   }
 }
 
 function updateSproutsDisplay() {
-  sproutsDisplay.textContent = ${sprouts}/${sproutsToNextLevel};
+  sproutsDisplay.textContent = `${sprouts}/${sproutsToNextLevel}`;
 }
 
 function collectSprouts(e) {
@@ -69,8 +69,8 @@ function showTopPopup(message) {
 function addClickEffect(e) {
   const clickEffect = document.createElement('div');
   clickEffect.className = 'click-effect';
-  clickEffect.style.top = ${e.clientY - token.getBoundingClientRect().top}px;
-  clickEffect.style.left = ${e.clientX - token.getBoundingClientRect().left}px;
+  clickEffect.style.top = `${e.clientY - token.getBoundingClientRect().top}px`;
+  clickEffect.style.left = `${e.clientX - token.getBoundingClientRect().left}px`;
   token.appendChild(clickEffect);
   setTimeout(() => clickEffect.remove(), 600);
 }
@@ -80,15 +80,15 @@ function addParticles(e) {
     const particle = document.createElement('div');
     particle.className = 'particle';
     const size = Math.random() * 6 + 4;
-    particle.style.width = ${size}px;
-    particle.style.height = ${size}px;
-    particle.style.top = ${e.clientY - token.getBoundingClientRect().top}px;
-    particle.style.left = ${e.clientX - token.getBoundingClientRect().left}px;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
+    particle.style.top = `${e.clientY - token.getBoundingClientRect().top}px`;
+    particle.style.left = `${e.clientX - token.getBoundingClientRect().left}px`;
     const angle = Math.random() * 360;
     const distance = Math.random() * 50 + 20;
-    particle.style.transform = translate(${Math.cos(angle) * distance}px, ${
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${
       Math.sin(angle) * distance
-    }px);
+    }px)`;
     token.appendChild(particle);
     setTimeout(() => particle.remove(), 1000);
   }
@@ -152,8 +152,8 @@ function addClickEffect(e) {
   clickEffect.className = 'click-effect';
 
   const rect = token.getBoundingClientRect();
-  clickEffect.style.top = ${e.clientY - rect.top}px;
-  clickEffect.style.left = ${e.clientX - rect.left}px;
+  clickEffect.style.top = `${e.clientY - rect.top}px`;
+  clickEffect.style.left = `${e.clientX - rect.left}px`;
 
   token.appendChild(clickEffect);
 
@@ -169,19 +169,19 @@ function addParticles(e) {
 
     // Размер частицы
     const size = Math.random() * 8 + 6; // Немного увеличили размер
-    particle.style.width = ${size}px;
-    particle.style.height = ${size}px;
+    particle.style.width = `${size}px`;
+    particle.style.height = `${size}px`;
 
     // Начальная позиция
-    particle.style.top = ${e.clientY - rect.top}px;
-    particle.style.left = ${e.clientX - rect.left}px;
+    particle.style.top = `${e.clientY - rect.top}px`;
+    particle.style.left = `${e.clientX - rect.left}px`;
 
     // Движение частицы
     const angle = Math.random() * 360;
     const distance = Math.random() * 60 + 30; // Расстояние разлета
-    particle.style.transform = translate(${Math.cos(angle) * distance}px, ${
+    particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${
       Math.sin(angle) * distance
-    }px);
+    }px)`;
 
     token.appendChild(particle);
 
@@ -197,8 +197,8 @@ function addTextEffect(e) {
 
   // Позиция текста относительно токена
   const rect = token.getBoundingClientRect();
-  textEffect.style.top = ${e.clientY - rect.top - 40}px; // Смещение вверх
-  textEffect.style.left = ${e.clientX - rect.left}px;
+  textEffect.style.top = `${e.clientY - rect.top - 40}px`; // Смещение вверх
+  textEffect.style.left = `${e.clientX - rect.left}px`;
 
   token.appendChild(textEffect);
 
@@ -210,5 +210,4 @@ token.addEventListener('click', () => {
   setTimeout(() => {
     token.classList.remove('active'); // Убираем класс
   }, 400); // Время синхронизировано с анимацией
-}); 
--
+});
